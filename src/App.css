@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.counterBtn {
+  padding: 15px 25px;
+  border: 2px solid #61dafb;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.counterBtn:hover {
+  background-color: #61dafb;
+  color: #282c34;
+  transition: all 200ms;
+}

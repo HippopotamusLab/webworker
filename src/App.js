@@ -3,6 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const handleCounter = () => {
+    console.log('App.js:8 handleCounter');
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,8 +21,8 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
         </a>
+        <div className="counterBtn" onClick={handleCounter}>COUNTER</div>
       </header>
     </div>
   );
