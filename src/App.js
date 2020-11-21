@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -6,18 +6,23 @@ function App() {
   const [counter, setCounter] = useState(0);
   const [hangover, setHangover] = useState(0);
 
+  const testWebWorker = new Worker('./workers/testWorker.js');
+
+  useEffect(() => {
+    testWebWorker.onmessage = (_event) => {
+      if (_event && _event.data) {
+        setHangover(_event.data);
+      }
+    };
+  }, [testWebWorker]);
+
   const handleCounter = () => {
     setCounter(counter + 1);
     console.log('App.js:10 handleCounter');
   }
 
   const handleHangover = () => {
-    const start = Date.now();
-
-    while (Date.now() < start + 5000) {
-    }
-    setHangover(hangover + 1);
-    console.log('App.js:18 handleHangover');
+    testWebWorker.postMessage({msg: 'testWebWorker', countTest: hangover});
   }
 
   return (
